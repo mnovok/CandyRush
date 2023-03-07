@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Transform target;
+    private Vector3 offset;
+
+    public float smoothSpeed = 0.15f;
+
     void Start()
     {
-        
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        offset = transform.position - target.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+       //transform.position = target.position + offset;
+       Vector3 desiredPosition = target.position + offset;
+       transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
     }
 }
