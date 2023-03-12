@@ -19,10 +19,6 @@ public class PlayerController : MonoBehaviour
 
     public Transform model;
 
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -43,7 +39,12 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("Jump"))
             {
-                direction.y = jumpForce;
+                Jump();
+            }
+
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                animator.SetTrigger("fireballAttack");
             }
         }
 
@@ -51,11 +52,12 @@ public class PlayerController : MonoBehaviour
         {
             if (ableToMakeADoubleJump && Input.GetButtonDown("Jump"))
             {
-                animator.SetTrigger("doubleJump");
-                direction.y = jumpForce;
-                ableToMakeADoubleJump = false;
+                DoubleJump();
             }
         }
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Fireball Attack"))
+            return;
 
         if(horizontalInput != 0) //promjena smjera igraèa
         {
@@ -64,5 +66,17 @@ public class PlayerController : MonoBehaviour
         }
 
         controller.Move(direction * Time.deltaTime);
+    }
+
+    private void DoubleJump()
+    {
+        animator.SetTrigger("doubleJump");
+        direction.y = jumpForce;
+        ableToMakeADoubleJump = false;
+    }
+
+    private void Jump()
+    {
+        direction.y = jumpForce;
     }
 }
