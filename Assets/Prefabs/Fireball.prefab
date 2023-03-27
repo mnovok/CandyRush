@@ -161,7 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a81e6d0f49b9d4997ca32bd64b3d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagaeEffect: {fileID: 100000, guid: 5c7aeddefe9f8499091b160181d837ed, type: 3}
+  damageEffect: {fileID: 100000, guid: 5c7aeddefe9f8499091b160181d837ed, type: 3}
+  damageAmount: 50
 --- !u!1001 &8982469602519426855
 PrefabInstance:
   m_ObjectHideFlags: 0

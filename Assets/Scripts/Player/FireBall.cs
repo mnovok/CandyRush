@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-    public GameObject damagaeEffect;
+   public GameObject damageEffect;
+   public int damageAmount = 50;
 
    private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Enemy")
         {
-            Instantiate(damagaeEffect, transform.position, damagaeEffect.transform.rotation);
+            Instantiate(damageEffect, transform.position, damageEffect.transform.rotation);
+            other.GetComponent<Enemy>().TakeDamage(damageAmount);
             Destroy(gameObject);
         }
     }
