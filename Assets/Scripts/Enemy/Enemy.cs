@@ -7,12 +7,14 @@ public class Enemy : MonoBehaviour
     private string currentState = "Idle";
     private Transform target;
     
-    public float chaseRange = 7;
+    public float chaseRange = 6;
     public Animator animator;
     public float speed = 6;
-    public float attackRange = 1;
+    public float attackRange = 2;
     public int HP;
     public int maxHP;
+    public GameObject player;
+    Animator playerAnimator;
 
     void Start()
     {
@@ -24,6 +26,13 @@ public class Enemy : MonoBehaviour
 
     void Update() 
     {
+        if(PlayerManager.gameOver)
+        {
+            currentState = "Dance";
+            animator.SetTrigger("isPlayerDead");            //animator.enabled = false;
+            //this.enabled = false;
+        }
+
         float distance = Vector3.Distance(transform.position, target.position); 
 
         if(currentState == "Idle")
@@ -40,19 +49,21 @@ public class Enemy : MonoBehaviour
             if(distance < attackRange)
             {
                 currentState = "Attack";
-            }
+                playerAnimator = player.GetComponent<Animator>();
+                animator.SetTrigger("isAttacked");
 
-            if(target.position.x < transform.position.x) //idi prema desno
-            {
-                
+            }
+ 
+            if(target.position.x > transform.position.x) //idi prema desno
+            {     
                 transform.Translate(transform.right * speed * Time.deltaTime);
-                transform.rotation = Quaternion.Euler(0, -90, 0);
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
 
             else //lijevo
             {
                 transform.Translate(transform.right * -1 * speed * Time.deltaTime); //-transform.right je isto sto i transform.left
-                transform.rotation = Quaternion.Euler(0, 90, 0);
+                transform.rotation = Quaternion.identity;
             }
         }
 

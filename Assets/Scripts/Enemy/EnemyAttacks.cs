@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyAttacks : MonoBehaviour
 {
-    public void Attack()
-    { }
+    public void Attack(int damageAmount)
+    {
+        PlayerManager.currentHP -= damageAmount;
+    }
 }

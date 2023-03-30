@@ -22,6 +22,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(PlayerManager.gameOver)
+        {
+            animator.SetTrigger("die");
+
+            this.enabled = false;
+        }
+
         float horizontalInput = Input.GetAxis("Horizontal");
         direction.x = horizontalInput * speed; //kretanje po x-osi
 
