@@ -15,5 +15,10 @@ public class FireBall : MonoBehaviour
             other.GetComponent<Enemy>().TakeDamage(damageAmount);
             Destroy(gameObject);
         }
+
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

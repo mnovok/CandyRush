@@ -13,8 +13,6 @@ public class Enemy : MonoBehaviour
     public float attackRange = 2;
     public int HP;
     public int maxHP;
-    public GameObject player;
-    Animator playerAnimator;
 
     void Start()
     {
@@ -49,12 +47,9 @@ public class Enemy : MonoBehaviour
             if(distance < attackRange)
             {
                 currentState = "Attack";
-                playerAnimator = player.GetComponent<Animator>();
-                animator.SetTrigger("isAttacked");
-
             }
- 
-            if(target.position.x > transform.position.x) //idi prema desno
+
+            if (target.position.x > transform.position.x) //idi prema desno
             {     
                 transform.Translate(transform.right * speed * Time.deltaTime);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
