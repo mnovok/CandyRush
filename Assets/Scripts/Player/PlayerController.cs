@@ -73,6 +73,11 @@ public class PlayerController : MonoBehaviour
         }
 
         controller.Move(direction * Time.deltaTime);
+
+        if(transform.position.z != 0)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        }
     }
 
     private void DoubleJump()

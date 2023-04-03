@@ -26,9 +26,10 @@ public class Enemy : MonoBehaviour
     {
         if(PlayerManager.gameOver)
         {
-            currentState = "Dance";
-            animator.SetTrigger("isPlayerDead");            //animator.enabled = false;
-            //this.enabled = false;
+            //currentState = "Dance";
+            //animator.SetTrigger("isPlayerDead");        
+            animator.enabled = false;
+            this.enabled = false;
         }
 
         float distance = Vector3.Distance(transform.position, target.position); 

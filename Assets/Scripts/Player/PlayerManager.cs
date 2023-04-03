@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     public static int currentHP = 100;
     public Slider healthBar;
     public static bool gameOver;
+    public GameObject gameOverPanel;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class PlayerManager : MonoBehaviour
         if(currentHP <= 0)
         {
             gameOver = true;
+            gameOverPanel.SetActive(true);
+            currentHP = 100;
         }
     }
 }
