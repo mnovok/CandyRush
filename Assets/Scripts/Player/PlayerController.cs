@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float gravity = -20; //sila gravitacije
     public static bool gameOver;
     public GameObject gameOverPanel;
+    public bool isCrouching = false;
 
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -55,6 +56,18 @@ public class PlayerController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.F))
             {
                 animator.SetTrigger("fireballAttack");
+            }
+
+            if(Input.GetKeyDown(KeyCode.C))
+            {
+                animator.SetTrigger("crouch");
+                isCrouching = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.C) && isCrouching)
+            {
+                animator.SetTrigger("stand");
+                isCrouching = false;
             }
         }
 
