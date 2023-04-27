@@ -36,8 +36,10 @@ public class Enemy : MonoBehaviour
 
         if(currentState == "Idle")
         {
-            if (distance < chaseRange)
+            if(distance < chaseRange)
+            {
                 currentState = "Chase";
+            }
         }
 
         else if(currentState == "Chase")

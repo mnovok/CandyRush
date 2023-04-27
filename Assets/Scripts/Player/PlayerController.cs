@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
     public float speed = 8; //public kako bismo mogli mijenjati brzinu
     public float jumpForce = 10;
     public float gravity = -20; //sila gravitacije
-    
+    public static bool gameOver;
+    public GameObject gameOverPanel;
+
     public Transform groundCheck;
     public LayerMask groundLayer;
 
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
         if(PlayerManager.gameOver)
         {
             animator.SetTrigger("die");
@@ -61,8 +64,20 @@ public class PlayerController : MonoBehaviour
             {
                 DoubleJump();
             }
-        }
 
+            else
+            {
+                
+                if (model.position.y <= -20 && !isGrounded)
+                {
+                    animator.SetTrigger("die");
+                    this.enabled = false;
+                    gameOver = true;
+                    gameOverPanel.SetActive(true);
+                }
+            }
+        }
+    
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Fireball Attack"))
             return;
 

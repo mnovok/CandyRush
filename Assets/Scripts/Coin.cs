@@ -14,6 +14,7 @@ public class Coin : MonoBehaviour
     private void OnTriggerEnter(Collider other) //skupljanje novèiæa
     {
         PlayerManager.numberOfCoins++;
+
         Destroy(gameObject);
     }
 }
