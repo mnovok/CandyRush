@@ -9,9 +9,14 @@ public class PlayerController : MonoBehaviour
     public float speed = 8; //public kako bismo mogli mijenjati brzinu
     public float jumpForce = 10;
     public float gravity = -20; //sila gravitacije
+
     public static bool gameOver;
     public GameObject gameOverPanel;
     public bool isCrouching = false;
+    public float CCStandHeight = 2.0f;
+    public float CCCrouchHeight = 1.9f;
+    public AudioClip jumpSound;
+    public AudioClip attackSound;
 
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -25,8 +30,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
-        if(PlayerManager.gameOver)
+        if (PlayerManager.gameOver)
         {
             animator.SetTrigger("die");
 
@@ -44,6 +48,9 @@ public class PlayerController : MonoBehaviour
 
         direction.y += gravity * Time.deltaTime;
 
+
+        CapsuleCollider cc = GetComponent<CapsuleCollider>();
+
         if (isGrounded)
         {
             ableToMakeADoubleJump = true;
@@ -55,17 +62,26 @@ public class PlayerController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.F))
             {
+                AudioSource.PlayClipAtPoint(attackSound, transform.position);
                 animator.SetTrigger("fireballAttack");
             }
 
             if(Input.GetKeyDown(KeyCode.C))
             {
+                speed = 5;
+                controller.height = CCCrouchHeight;
+                cc.direction = 0;
+                cc.center = new Vector3(0, -0.5f, 0);
                 animator.SetTrigger("crouch");
                 isCrouching = true;
             }
 
             if (Input.GetKeyUp(KeyCode.C) && isCrouching)
             {
+                speed = 8;
+                controller.height = CCStandHeight;
+                cc.direction = 1;
+                cc.center = new Vector3(0, 0, 0);
                 animator.SetTrigger("stand");
                 isCrouching = false;
             }
@@ -111,12 +127,15 @@ public class PlayerController : MonoBehaviour
     private void DoubleJump()
     {
         animator.SetTrigger("doubleJump");
+        AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         direction.y = jumpForce;
         ableToMakeADoubleJump = false;
     }
 
     private void Jump()
     {
+        AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         direction.y = jumpForce;
     }
 }
+

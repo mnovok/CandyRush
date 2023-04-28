@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     public Slider healthBar;
     public static bool gameOver;
     public GameObject gameOverPanel;
+    public GameObject pausePanel;
 
 
     void Start()
@@ -26,6 +27,11 @@ public class PlayerManager : MonoBehaviour
 
         healthBar.value = currentHP;
 
+        if(Input.GetKeyDown("escape"))
+        {
+            pausePanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
 
         if (currentHP <= 0)
         {
