@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
 
         if(Input.GetKeyDown("escape"))
         {
+
             pausePanel.SetActive(true);
             Time.timeScale = 0f;
         }
