@@ -1,4 +1,3 @@
-using Packages.Rider.Editor.UnitTesting;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
