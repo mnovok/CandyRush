@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("stand");
                 isCrouching = false;
             }
+
         }
 
         else

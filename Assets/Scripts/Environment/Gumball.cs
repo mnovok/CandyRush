@@ -20,5 +20,4 @@ public class Gumball : MonoBehaviour
             gumball.transform.position = originalPosition;
         }
     }
-
 }
