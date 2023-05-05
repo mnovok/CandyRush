@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour
                     this.enabled = false;
                     gameOver = true;
                     gameOverPanel.SetActive(true);
+                    PlayerManager.currentHP = 100;
                 }
             }
         }
