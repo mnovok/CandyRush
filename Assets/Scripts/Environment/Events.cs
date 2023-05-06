@@ -8,6 +8,7 @@ public class Events : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
    }
 
+
     public void QuitGame()
     {
         Application.Quit();
