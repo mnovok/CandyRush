@@ -1,3 +1,3 @@
 # Candy Rush
- The game was made as a project for bachelor thesis.
+ The game was made as a project for bachelor thesis. </br>
  All instructions to play are provided within the game.
